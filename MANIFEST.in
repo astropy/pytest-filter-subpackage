@@ -1,0 +1,9 @@
+include LICENSE.rst
+include README.rst
+include CHANGES.rst
+
+include setup.cfg
+
+recursive-include tests *
+
+global-exclude *.pyc *.o
