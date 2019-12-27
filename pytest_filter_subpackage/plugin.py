@@ -6,7 +6,7 @@ code and docs for a specific sub-package.
 """
 
 import os
-
+import pytest
 
 def pytest_addoption(parser):
 
@@ -16,11 +16,16 @@ def pytest_addoption(parser):
                           "string to specify multiple packages.")
 
 
+@pytest.hookimpl(tryfirst=True)
 def pytest_ignore_collect(path, config):
+
+    # NOTE: it is important that when we don't want to skip a file we return
+    # None and not False - if we return False pytest will not call any other
+    # pytest_ignore_collect function in other plugins, e.g. pytest-doctestplus.
 
     # If the --package/-P option wasn't specified, don't do anything
     if config.getvalue('package') is None:
-        return False
+        return None
 
     # Convert the path to the file being checked to a relative path.
     path = os.path.relpath(path, os.path.curdir)
@@ -28,7 +33,7 @@ def pytest_ignore_collect(path, config):
     # If the path is a directory, never skip - just do the filtering on a file
     # by file basis.
     if os.path.isdir(path):
-        return False
+        return None
 
     # We split the path up and ignore the first part of the path, which could
     # be the main package name, or e.g. 'docs'.
@@ -38,8 +43,8 @@ def pytest_ignore_collect(path, config):
     subpackage = '.'.join(split_path)
 
     # Finally, we check if this is one of the specified ones
-    for subpackage_target in config.getvalue('package').split(','):
+    for subpackage_target in config.getvalue('package').strip().split(','):
         if subpackage.startswith(subpackage_target):
-            return False
+            return None
 
     return True

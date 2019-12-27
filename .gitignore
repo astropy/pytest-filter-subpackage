@@ -58,3 +58,5 @@ venv
 
 # PyCharm
 .idea
+
+pytest_filter_subpackage/version.py

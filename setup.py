@@ -13,5 +13,4 @@ except (ImportError, AssertionError):
 
 from setuptools import setup
 
-setup(use_scm_version=True,
-      write_to=os.path.join('pytest_filter_subpackage', 'version.py'))
+setup(use_scm_version={'write_to': os.path.join('pytest_filter_subpackage', 'version.py')})
