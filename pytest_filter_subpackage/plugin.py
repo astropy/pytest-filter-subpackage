@@ -28,24 +28,27 @@ def pytest_ignore_collect(path, config):
     if config.getvalue('package') is None:
         return None
 
-    # Convert the path to the file being checked to a relative path.
-    path = os.path.relpath(path, os.path.curdir)
-
     # If the path is a directory, never skip - just do the filtering on a file
     # by file basis.
     if os.path.isdir(path):
         return None
 
-    # We split the path up and ignore the first part of the path, which could
-    # be the main package name, or e.g. 'docs'.
-    split_path = path.split(os.path.sep)[1:]
+    # Otherwise ignore filename for remainder of checks
+    path = os.path.dirname(path)
 
     # Now convert the remainder of the path to subpackage name
-    subpackage = '.'.join(split_path)
+    subpackage = '.'.join(path.split(os.path.sep))
+
+    # Ignore any 'tests' directory
+    if subpackage.endswith('.tests'):
+        subpackage = subpackage[:-6]
+
+    # Find selected sub-packages
+    selected = config.getvalue('package').strip().split(',')
 
     # Finally, we check if this is one of the specified ones
-    for subpackage_target in config.getvalue('package').strip().split(','):
-        if subpackage.startswith(subpackage_target):
+    for subpackage_target in selected:
+        if subpackage.endswith(subpackage_target):
             return None
 
     return True

@@ -37,7 +37,7 @@ of sub-package names (without the top-level package name)::
 
 which is equivalent to::
 
-    pytest */wcs */io/fits
+    pytest **/wcs **/io/fits
 
 When used in conjunction with `pytest-doctestplus
 <http://github.com/astropy/pytest-doctestplus>`_ this will result in both
