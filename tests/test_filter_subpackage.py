@@ -1,11 +1,3 @@
-from distutils.version import LooseVersion
-from textwrap import dedent
-
-import pytest
-
-import doctest
-
-
 pytest_plugins = ['pytester']
 
 

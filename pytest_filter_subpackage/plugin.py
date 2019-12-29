@@ -8,6 +8,7 @@ code and docs for a specific sub-package.
 import os
 import pytest
 
+
 def pytest_addoption(parser):
 
     parser.addoption("--package", "-P", action="store",

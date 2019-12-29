@@ -32,7 +32,7 @@ of sub-package names (without the top-level package name)::
 
     pytest -P wcs,io.fits
 
-which is equivalent to:
+which is equivalent to::
 
     pytest */wcs */io/fits
 

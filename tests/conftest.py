@@ -1,6 +1,3 @@
-from functools import partial
-import textwrap
-
 import pytest
 
 TEST_TEMPLATE = """
@@ -33,7 +30,8 @@ def testpackage(testdir):
     for sub in ('a', 'b', 'c'):
         pkg.mkdir(sub).join('__init__.py').write('')
         pkg.join(sub).mkdir('tests').join('__init__.py').write('')
-        pkg.join(sub).join('tests').join(f'test_{sub}.py').write(TEST_TEMPLATE.format(sub=sub))
+        pkg.join(sub).join('tests').join(f'test_{sub}.py') \
+           .write(TEST_TEMPLATE.format(sub=sub))
     docs = testdir.mkdir('docs')
     for sub in ('a', 'c'):
         docs.mkdir(sub).join('index.rst').write(DOCS_TEMPLATE.format(sub=sub))
