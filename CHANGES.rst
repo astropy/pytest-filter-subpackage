@@ -1,5 +1,5 @@
-0.2 (unreleased)
-================
+0.1.1 (2020-01-09)
+==================
 
 - Fixed bug that caused e.g. ``-P sub`` to not match ``package.sub.other``. [#1]
 
