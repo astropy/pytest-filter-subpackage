@@ -32,6 +32,11 @@ def testpackage(testdir):
         pkg.join(sub).mkdir('tests').join('__init__.py').write('')
         pkg.join(sub).join('tests').join(f'test_{sub}.py') \
            .write(TEST_TEMPLATE.format(sub=sub))
+    pkg.join('c').mkdir('d').join('__init__.py').write('')
+    pkg.join('c').join('d').mkdir('tests').join('__init__.py').write('')
+    pkg.join('c').join('d').join('tests').join('test_d.py') \
+       .write(TEST_TEMPLATE.format(sub='d'))
     docs = testdir.mkdir('docs')
+    docs.join('index.rst').write('')
     for sub in ('a', 'c'):
         docs.mkdir(sub).join('index.rst').write(DOCS_TEMPLATE.format(sub=sub))

@@ -4,7 +4,7 @@ pytest_plugins = ['pytester']
 def test_default(testdir, testpackage):
     # Make sure all code tests are picked up by default
     reprec = testdir.inline_run()
-    reprec.assertoutcome(passed=4, failed=2)
+    reprec.assertoutcome(passed=5, failed=3)
 
 
 def test_with_rst(testdir, testpackage):
@@ -14,7 +14,7 @@ def test_with_rst(testdir, testpackage):
     doctest_plus = enabled
     """)
     reprec = testdir.inline_run('--doctest-rst')
-    reprec.assertoutcome(passed=6, failed=2)
+    reprec.assertoutcome(passed=8, failed=3)
 
 
 def test_flag_single_subpackage(testdir, testpackage):
@@ -47,3 +47,9 @@ def test_flag_multiple_subpackage_with_rst(testdir, testpackage):
     """)
     reprec = testdir.inline_run('-P a,b', '--doctest-rst')
     reprec.assertoutcome(passed=4, failed=1)
+
+
+def test_flag_single_subpackage_partial(testdir, testpackage):
+    # Check that -P c will collect tests in c.d
+    reprec = testdir.inline_run('-P c')
+    reprec.assertoutcome(passed=2, failed=2)

@@ -11,7 +11,7 @@ jobs:
   parameters:
     envs:
     # Code style
-    - linux: style
+    - linux: codestyle
     # Standard tests
     - linux: py36-test
     - linux: py37-test
