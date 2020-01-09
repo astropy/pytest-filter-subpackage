@@ -14,7 +14,7 @@ def test_with_rst(testdir, testpackage):
     doctest_plus = enabled
     """)
     reprec = testdir.inline_run('--doctest-rst')
-    reprec.assertoutcome(passed=6, failed=2)
+    reprec.assertoutcome(passed=7, failed=2)
 
 
 def test_flag_single_subpackage(testdir, testpackage):

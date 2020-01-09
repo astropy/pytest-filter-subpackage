@@ -36,19 +36,34 @@ def pytest_ignore_collect(path, config):
     # Otherwise ignore filename for remainder of checks
     path = os.path.dirname(path)
 
-    # Now convert the remainder of the path to subpackage name
-    subpackage = '.'.join(path.split(os.path.sep))
+    # Split path into components
+    path = path.split(os.path.sep)
 
-    # Ignore any 'tests' directory
-    if subpackage.endswith('.tests'):
-        subpackage = subpackage[:-6]
+    # Now cycle through and find the top level of the package - this is the
+    # last one that contains an ``__init__.py`` or ``index.rst`` file. We need
+    # to make sure that at least one of these files was found before escaping.
+    found_prev = False
+    for i in range(len(path), -1, -1):
+        subpath = os.path.sep.join(path[:i])
+        found = (os.path.exists(os.path.join(subpath, '__init__.py')) or
+                 os.path.exists(os.path.join(subpath, 'index.rst')))
+        if found_prev and not found:
+            break
+        found_prev = found
+
+    path = os.path.sep.join(path[i+1:])
+
+    # Now convert the remainder of the path to subpackage name, excluding
+    # the very first part of the path (which will be the main package name
+    # or e.g. docs)
+    subpackage = '.'.join(path.split(os.path.sep))
 
     # Find selected sub-packages
     selected = config.getvalue('package').strip().split(',')
 
     # Finally, we check if this is one of the specified ones
     for subpackage_target in selected:
-        if subpackage.endswith(subpackage_target):
+        if subpackage.startswith(subpackage_target):
             return None
 
     return True
