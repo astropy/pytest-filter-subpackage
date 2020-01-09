@@ -53,9 +53,6 @@ def pytest_ignore_collect(path, config):
 
     path = os.path.sep.join(path[i+1:])
 
-    # Now convert the remainder of the path to subpackage name, excluding
-    # the very first part of the path (which will be the main package name
-    # or e.g. docs)
     subpackage = '.'.join(path.split(os.path.sep))
 
     # Find selected sub-packages
