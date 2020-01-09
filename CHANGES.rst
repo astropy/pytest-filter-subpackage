@@ -1,4 +1,4 @@
-0.1 (unreleased)
+0.1 (2020-01-09)
 ================
 
 - Initial version.
