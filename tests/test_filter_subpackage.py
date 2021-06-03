@@ -53,3 +53,9 @@ def test_flag_single_subpackage_partial(testdir, testpackage):
     # Check that -P c will collect tests in c.d
     reprec = testdir.inline_run('-P c')
     reprec.assertoutcome(passed=2, failed=2)
+
+
+def test_flag_single_subsubpackage(testdir, testpackage):
+    # Check that -P c.d will not collect tests in c.
+    reprec = testdir.inline_run('-P c.d')
+    reprec.assertoutcome(passed=1, failed=1)
