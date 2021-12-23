@@ -51,16 +51,18 @@ def pytest_ignore_collect(path, config):
             break
         found_prev = found
 
-    path = os.path.sep.join(path[i+1:])
-
-    subpackage = '.'.join(path.split(os.path.sep))
+    subpackage_path = path[i+1:]
 
     # Find selected sub-packages
     selected = config.getvalue('package').strip().split(',')
 
     # Finally, we check if this is one of the specified ones
     for subpackage_target in selected:
-        if subpackage.startswith(subpackage_target):
+        for i, target in enumerate(subpackage_target.split('.')):
+            if i >= len(subpackage_path) or target != subpackage_path[i]:
+                break
+
+        else:
             return None
 
     return True
