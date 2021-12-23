@@ -13,12 +13,13 @@ jobs:
     # Code style
     - linux: codestyle
     # Standard tests
-    - linux: py36-test
     - linux: py37-test
     - linux: py38-test
-    - macos: py36-test
+    - linux: py39-test
+    - linux: py310-test
     - macos: py37-test
     - macos: py38-test
-    - windows: py36-test
+    - macos: py39-test
     - windows: py37-test
     - windows: py38-test
+    - windows: py39-test
