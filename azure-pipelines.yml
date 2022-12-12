@@ -22,7 +22,13 @@ jobs:
     - macos: py38-test
     - macos: py39-test
     - macos: py310-test
-    - windows: py37-test
     - windows: py38-test
     - windows: py39-test
     - windows: py310-test
+
+# Until https://github.com/OpenAstronomy/azure-pipelines-templates/issues/86 is fixed, then move this back to the previous job
+- template: run-tox-env.yml@OpenAstronomy
+  parameters:
+    toxverspec: <4
+    envs:
+    - windows: py37-test
