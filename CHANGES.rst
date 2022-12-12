@@ -1,4 +1,4 @@
-0.1.2 (unreleased)
+0.1.2 (2022-12-11)
 ==================
 
 - Fixed bug that caused ``-P time`` to also match ``package.timeseries``. [#7]
