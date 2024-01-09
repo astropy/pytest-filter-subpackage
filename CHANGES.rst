@@ -1,4 +1,4 @@
-0.1.3 (unreleased)
+0.2.0 (unreleased)
 ==================
 
 - pytest 8.1 compatibility. [#15]
