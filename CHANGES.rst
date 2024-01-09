@@ -1,7 +1,9 @@
 0.1.3 (unreleased)
 ==================
 
-- No changes yet.
+- pytest 8.1 compatibility. [#15]
+
+- Dropped Python 3.7 support. Minimum supported pytest is now 4.6. [#15]
 
 0.1.2 (2022-12-11)
 ==================
