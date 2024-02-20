@@ -59,3 +59,7 @@ def test_flag_single_subsubpackage(testdir, testpackage):
     # Check that -P c.d will not collect tests in c.
     reprec = testdir.inline_run('-P c.d')
     reprec.assertoutcome(passed=1, failed=1)
+
+def test_nonexistent_subpackage(testdir, testpackage):
+    reprec = testdir.runpytest('-P f')
+    assert reprec.ret == 3

@@ -64,7 +64,6 @@ if PYTEST_GE_8_0:
 
         # Find selected sub-packages
         selected = config.getvalue('package').strip().split(',')
-
         # Finally, we check if this is one of the specified ones
         for subpackage_target in selected:
             for i, target in enumerate(subpackage_target.split('.')):
@@ -75,6 +74,11 @@ if PYTEST_GE_8_0:
                 return None
 
         return True
+
+    @pytest.hookimpl(trylast=True)
+    def pytest_collection_finish(session):
+        if len(session.items) == 0:
+            raise ValueError("Please provide a valid subpackage name with the -P option.")
 
 else:
 
