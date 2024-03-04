@@ -2,8 +2,13 @@
 pytest-filter-subpackage
 ========================
 
-.. image:: https://dev.azure.com/astropy-project/pytest-filter-subpackage/_apis/build/status/astropy.pytest-filter-subpackage?branchName=main
-   :target: https://dev.azure.com/astropy-project/pytest-filter-subpackage/_build/latest?definitionId=5&branchName=main
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.10779130.svg
+    :target: https://doi.org/10.5281/zenodo.10779130
+    :alt: 10.5281/zenodo.10779130
+
+.. image:: https://github.com/astropy/pytest-filter-subpackage/actions/workflows/python-tests.yml/badge.svg?branch=main
+    :target: https://github.com/astropy/pytest-filter-subpackage/actions/workflows/python-tests.yml
+    :alt: CI
 
 This package contains a simple plugin for the `pytest`_ framework that provides a
 shortcut to testing all code and documentation for a given sub-package.
