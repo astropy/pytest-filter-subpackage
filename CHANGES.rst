@@ -1,6 +1,8 @@
 0.3.0 (unreleased)
 ==================
 
+- Dropped Python 3.8 and 3.9 support. Added support for Python 3.13. [#21]
+
 0.2.0 (2024-03-04)
 ==================
 
